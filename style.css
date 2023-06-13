@@ -1,0 +1,231 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+
+}
+:root{
+    --bg-color: #000;
+    --text-color: #fff;
+    --main-color: #28a6d4;
+}
+body{
+    color: var(--text-color);
+    /* min-height: 200rem; */
+}
+header{
+    box-sizing: border-box;
+    text-decoration: none;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color) ;
+    justify-content: space-between;
+    padding: 28px 12%;
+    transition: all .50s ease;
+}
+
+header ul {
+    margin-bottom: -1rem;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo i{
+    text-decoration: none;
+    color: var(--main-color);
+    font-size: 28px;
+    margin-right: 3px;
+}
+
+.logo span{
+    color: var(--text-color);
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.navbar-navi {
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+}
+.navbar-navi a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0px 1.7rem;
+    margin-top: auto;
+    transition: all .50s ease;
+    display: inline-block;  
+}
+
+.navbar-navi a:hover{
+    color: var(--main-color);
+}
+
+.navbar-navi a::after{
+    content: '';
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--main-color);
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+
+.navbar-navi a:hover::after{
+    transform: scaleX(0.7)
+}
+
+.navbar-extra div{
+    color: var(--text-color);
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+.navbar-extra div:hover{
+    color: var(--main-color);
+}
+
+#hamburger-menu{
+    display: none;
+
+}
+
+.hero{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(assets/img/h.jpg);
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.content .premium{
+    color: var(--main-color);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 4rem;
+}
+.content h1{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.search{
+    padding: 3rem 9% 1.4rem;
+}
+.search h1{
+    color: #000;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.1rem;
+    margin-bottom: 3rem;
+}
+.search h1 span{
+    color: var(--main-color);
+}
+.search .row{
+    display: flex;
+}
+
+.search .row .about-img{
+    display: flex;
+    flex: 1 1 35rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.search .row .about-img img{
+    width: 50%;
+}
+
+.search .row .content{
+    flex: 1 1 35rem;
+    padding: 1 1rem;
+    display: flex;
+}
+
+.search .content h5 {
+    color: var(--bg-color);
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.search .content p{
+    color: var(--bg-color);
+}
+
+
+
+/* Media Queries Responsive */
+/* Laptop */
+@media (max-width: 1366px){
+    html{
+        font-size: 85%;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px){
+    html{
+        font-size: 62.5%;
+    }
+    #hamburger-menu{
+        display: inline-block;
+    }
+    .navbar-navi{
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        background-color: #000000;
+        width: 18rem;
+        height: 100vh;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .navbar-navi.active{
+        right: 0;
+    }
+
+    .navbar-navi a{
+        color: var(--text-color);
+        display: block;
+        margin: 1.5rem;
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .navbar-navi a::after{
+        transform-origin: 0 0;
+    }
+    .navbar-navi a:hover::after{
+        transform: scaleX(0.2);
+    }
+}
+
+/* Mobile Phone */
+@media (max-width: 450px){
+    html{
+        font-size: 55%;
+    }
+}
