@@ -52,10 +52,9 @@
             <div class="about-img">
                 <img src="assets/img/logo.png" alt="">
             </div>
-            <div class="content">
-                
-                    <form action="#">
-                        <h5>Masukan Kode Invoice</h5>
+            <div class="invoice">
+                <form action="#">
+                    <h5>Masukan Kode Invoice</h5>
                         <div class="input-group">
                             <span class="input-group-text" id="addon-wrapping">#</span>
                             <input type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
