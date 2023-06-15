@@ -47,25 +47,75 @@
     <!-- Status Start -->
     <section class="search" id="search">
         <h1> <span>CLEANING</span> STATUS</h1>
+            <!-- Awal Produk -->
+    <div class="container">
+        <form action="index.php" method="get">
+            <input name="search" class="form-control border border-3 border-dark mt-4 mb-4" list="datalistOptions" id="exampleDataList" placeholder="Masukan Nama Ruangan atau Kapasitas Ruangan">
+        </form>
+    </div>
+    <div class="container mt-2">
+        <h5>Produk Terbaru</h5>
+    </div>
 
+    <div class="container mb-5">
         <div class="row">
-            <div class="about-img">
-                <img src="assets/img/logo.png" alt="">
-            </div>
-            <div class="invoice">
-                <form action="#">
-                    <h5>Masukan Kode Invoice</h5>
-                        <div class="input-group">
-                            <span class="input-group-text" id="addon-wrapping">#</span>
-                            <input type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
+            <?php
+            include "koneksi.php";
+            if (isset($_GET['search'])) {
+                $cari = $_GET['search'];
+                //query pencarian biasa lah 
+                $query = "SELECT  * FROM ruang WHERE id_ruang = '$cari' LIMIT 1";
+            } else {
+                // //jika tidak ada pencarian, default yang dijalankan query ini
+                // $query = "SELECT * FROM ruang ORDER BY id_ruang ASC";
+            }
+
+            $result = mysqli_query($conn, $query);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                <div class="col-3">
+                    <div class="card border border-dark border-3 mb-3" style="width: 20rem;">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $row['nama_ruang']; ?></h5>
+                            <p class="Card-text text-danger">Kapasitas <?php echo ($row['kapasitas']); ?></p>
+                            <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#testing<?php echo $row['id_ruang']; ?>">
+                                Cek Rincian
+                            </button>
+                            <!-- Modal untuk deskripsi produk -->
+                            <div class="modal fade" id="testing<?php echo $row['id_ruang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $row['nama_ruang']; ?></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><?php echo $row['desc_ruang']; ?></p>
+                                            <p class="text-danger">Kapasitas <?php echo ($row['kapasitas']); ?></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Akhir Modal -->
                         </div>
-                        <div class="col-auto p-3">
-                            <button type="submit" class="btn btn-primary mb-3">Check Status</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
+
         </div>
+    </div>
+    <!-- Akhir Produk -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
     </section>
 
     <!-- Status end -->
