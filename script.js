@@ -12,3 +12,25 @@ document.addEventListener('click', function(e){
         navbarNav.classList.remove('active');
     }
 })
+
+//scroll navbar
+const sections = document.querySelectorAll("section[id]");
+
+// Add an event listener listening for scroll
+window.addEventListener("scroll", navHighlighter);
+
+function navHighlighter() {
+  sections.forEach(current => {
+    const sectionHeight = current.offsetHeight;
+    const sectionTop = current.offsetTop - 100;
+    sectionId = current.getAttribute("id");
+    if (
+      scrollY > sectionTop &&
+      scrollY <= sectionTop + sectionHeight
+    ){
+      document.querySelector("header ul li a[href*=" + sectionId + "]").classList.add("active");
+    } else {
+      document.querySelector("header ul li a[href*=" + sectionId + "]").classList.remove("active");
+    }
+  });
+}

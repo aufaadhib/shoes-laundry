@@ -22,7 +22,7 @@
     <header>
         <a href="#home" class="logo"><i class="ri-water-flash-fill"></i><span>Beshoes</span></a>
         <ul class="navbar-navi">
-            <li><a href="#home">Home</a> </li>
+            <li><a href="#home" class="active">Home</a> </li>
             <li><a href="#search">Status</a></li>
             <li><a href="#service">Services</a></li>
             <li><a href="#gallery">Gallery</a></li>
@@ -63,9 +63,23 @@
                         <button type="submit" class="btn btn-primary mb-3">Check Status</button>
                     </div>
                 </form>
+                <div class="row">
+                    <div class="order-tracking completed">
+                        <span class="is-complete"></span>
+                        <p>Ordered</p>
+                    </div>
+                    <div class="order-tracking completed">
+                        <span class="is-complete"></span>
+                        <p>Shipped</p>
+                    </div>
+                    <div class="order-tracking">
+                        <span class="is-complete"></span>
+                        <p>Delivered</p>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
+
     </section>
 
     <!-- Status end -->
@@ -78,12 +92,15 @@
         <p> Jasa yang kami tawarkan:</p>
         <div class="row">
             <div class="service-card">
-                <img src="assets/img/service1.jpg" alt="Repair">
-                <img src="assets/img/service2.jpg" alt="Repair">
-                <img src="assets/img/service3.jpg" alt="Repair">
-                <img src="assets/img/service2.jpg" alt="Repair">
-                <img src="assets/img/service3.jpg" alt="Repair">
-                <img src="assets/img/service1.jpg" alt="Repair">
+                <img src="assets/img/menu4.png" alt="Repair">
+                <img src="assets/img/menu1.png" alt="Repair">
+                <img src="assets/img/menu5.png" alt="Repair">
+                <img src="assets/img/menu6.png" alt="Repair">
+                <img src="assets/img/menu2.png" alt="Repair">
+                <img src="assets/img/menu7.png" alt="Repair">
+                <img src="assets/img/menu8.png" alt="Repair">
+                <img src="assets/img/menu3.png" alt="Repair">
+                <img src="assets/img/menu9.png" alt="Repair">
             </div>
         </div>
     </section>
@@ -95,9 +112,9 @@
         <hr>
         <div class="row">
             <div class="gallery-card">
-                <img src="assets/img/galeri1.jpg" alt="Repair">
-                <img src="assets/img/galeri2.jpg" alt="Repair">
-                <img src="assets/img/galeri3.jpg" alt="Repair">
+                <img src="assets/img/galeri1.png" alt="Repair">
+                <img src="assets/img/galeri2.png" alt="Repair">
+                <img src="assets/img/galeri3.png" alt="Repair">
                 <img src="assets/img/galeri4.jpg" alt="Repair">
                 <img src="assets/img/galeri5.jpg" alt="Repair">
                 <img src="assets/img/galeri6.jpg" alt="Repair">
@@ -125,11 +142,15 @@
                 </div>
                 <div class="carousel-item text-center">
                     <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">@yayaas</strong></h5>
-                    <p class="m-0 pt-3">untuk membersihkan langkah-langkah kita dari masa lalu yang kelam, sepatu kita juga harus bersih! Jangan bimbang, ini buktinya cek @beshoescucisepatu.</p>
+                    <p class="m-0 pt-3">untuk membersihkan langkah-langkah kita dari masa lalu yang kelam, sepatu kita juga harus bersih! Jangan bimbang,
+                        <br> ini buktinya cek @beshoescucisepatu.
+                    </p>
                 </div>
                 <div class="carousel-item text-center">
                     <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">@rickysnggh</strong></h5>
-                    <p class="m-0 pt-3">terima kasih. tempat cuci sepatu yang affordable, for sure clean bisa COD lagi atat drop your address nanti dijemput sdama admin.</p>
+                    <p class="m-0 pt-3">terima kasih. tempat cuci sepatu yang affordable, for sure clean bisa COD lagi atat drop your address nanti
+                        <br> dijemput sama admin.
+                    </p>
                 </div>
                 <div class="carousel-item text-center">
                     <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">@widarwatii_</strong></h5>
@@ -162,36 +183,71 @@
     <!-- Testimonial Start -->
 
     <!-- Contact Start -->
-    <div class="container" id="contact">
-        <div class="row">
-            <div class="col-md-7">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.780625196265!2d110.44120537486887!3d-7.70667439231098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5dc8fcc4f965%3A0xd7c940ff45d1a4a3!2sBeshoes!5e0!3m2!1sid!2sid!4v1688579835382!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="col-md-5">
-                <center><h4>Contact Us</h4></center>
-                <div class="mt-5">
-                    <div class="d-flex">
-                        <i class="ri-map-pin-line"></i>
-                        <p>Address: Jl Kaliurang Km 17,5 ruko no 3 selatan SMP N 1 Pakem Sleman</p>
-                    </div><hr>
-                    <div class="d-flex">
-                    <i class="ri-phone-fill"></i>
-                        <p>Contact: 0856-4362-0742</p>
-                    </div><hr>
-                    <div class="d-flex">
-                    <i class="ri-time-fill"></i>
-                        <p>Open: Mon - Sat : 10.00 - 18.00 WIB</p>
-                    </div><hr>
-                    <div class="d-flex">
-                    <i class="ri-instagram-fill"></i>
-                        <p>Instagram: @beshoescucisepatu</p>
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.215649314796!2d110.4215421!3d-7.659948299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5f827c13e841%3A0x475894f89a802320!2sBeshoes%20Cuci%20Sepatu!5e0!3m2!1sid!2sid!4v1688752811328!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-md-5">
+                    <center>
+                        <h4>Contact Us</h4>
+                    </center>
+                    <div class="mt-5">
+                        <div class="d-flex">
+                            <i class="ri-map-pin-line"></i>
+                            <p>Address: Jl Kaliurang Km 17,5 ruko no 3 selatan SMP N 1 Pakem Sleman</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex">
+                            <i class="ri-phone-fill"></i>
+                            <p>Contact: 0856-4362-0742</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex">
+                            <i class="ri-time-fill"></i>
+                            <p>Open: Mon - Sat : 10.00 - 18.00 WIB</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex">
+                            <i class="ri-instagram-fill"></i>
+                            <p>Instagram: @beshoescucisepatu</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Contact Start -->
+    </section>
+    <!-- Contact end -->
 
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="ri-google-fill"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="ri-instagram-fill"></i></a>
+
+                <!-- Whatsapp -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="ri-whatsapp-fill"></i></a>
+
+                <!-- Map -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="ri-map-pin-fill"></i></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">BESHOES</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
