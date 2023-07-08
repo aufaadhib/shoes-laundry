@@ -167,7 +167,17 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                 </svg>
-                                <span class="ml-2">Ruang</span>
+                                <span class="ml-2">Paket</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="listpesanan.php">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span class="ml-2">List Pesanan</span>
                             </a>
                         </li>
 
@@ -235,8 +245,6 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                         </form>
                                     </div>
                                 </section>
-                                <!-- Akhir ruang -->
-                                <!-- OUTPUT ruang -->
                                 <div class="container mb-5">
                                     <nav class="navbar text-white" style="background-color: #0d6efd">
                                         &nbsp;&nbsp; Daftar Paket
@@ -250,7 +258,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                         echo "<th scope='col'>No</th>";
                                         echo "<th style='width:25%' scope='col'>Nama Paket</th>";
                                         echo "<th style='width:10%' scope='col'>Harga</th>";
-                                        echo "<th scope='col'>Deskripsi Ruangan</th>";
+                                        echo "<th scope='col'>Deskripsi Paket</th>";
                                         echo "<th scope='col'>Action</th>";
                                         echo "</tr>";
                                         echo "</thead>";

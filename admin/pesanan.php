@@ -145,7 +145,7 @@ if ($op == 'proses') {
                 <div class="row">
                     <div class="col-10 col-xl mb-4 mb-lg-0">
                         <div class="card">
-                            <h5 class="card-header">Daftar Peminjaman Ruangan</h5>
+                            <h5 class="card-header">Daftar Pesanan Laundry</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <?php
