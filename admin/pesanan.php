@@ -1,3 +1,37 @@
+<?php
+include "../koneksi.php";
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+} else {
+    $op = "";
+}
+
+if ($op == 'antri') {
+    $id         = $_GET['id'];
+    $sql1       = "update pesanan set status = 'Dalam Antrian' where id_pesanan = '$id'";
+    $q1         = mysqli_query($conn, $sql1);
+    if ($id == '') {
+        $error = "Data tidak ditemukan";
+    }
+}
+if ($op == 'selesai') {
+    $id         = $_GET['id'];
+    $sql1       = "update pesanan set status = 'Selesai' where id_pesanan = '$id'";
+    $q1         = mysqli_query($conn, $sql1);
+    if ($id == '') {
+        $error = "Data tidak ditemukan";
+    }
+}
+
+if ($op == 'proses') {
+    $id         = $_GET['id'];
+    $sql1       = "update pesanan set status = 'Sedang Diproses' where id_pesanan = '$id'";
+    $q1         = mysqli_query($conn, $sql1);
+    if ($id == '') {
+        $error = "Data tidak ditemukan";
+    }
+}
+?>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +94,6 @@
         </div>
         <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
             <div class="dropdown">
-                
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                     Hello, Admin
                 </button>
@@ -76,7 +109,7 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">
+                            <a class="nav-link" aria-current="page" href="index.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -85,7 +118,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pesanan.php">
+                            <a class="nav-link active" href="pesanan.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                     <polyline points="13 2 13 9 20 9"></polyline>
@@ -94,13 +127,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="ruang.php">
+                            <a class="nav-link" href="paket.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                 </svg>
-                                <span class="ml-2">Ruang</span>
+                                <span class="ml-2">Paket</span>
                             </a>
                         </li>
 
@@ -108,45 +141,54 @@
                 </div>
             </nav>
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
-                <h1 class="h2">Dashboard</h1>
+                <h1 class="h2">Pesanan</h1>
                 <div class="row">
                     <div class="col-10 col-xl mb-4 mb-lg-0">
                         <div class="card">
-                            <h5 class="card-header">Latest transactions</h5>
+                            <h5 class="card-header">Daftar Peminjaman Ruangan</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <?php
                                     include '../koneksi.php';
-                                    ?>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">No</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">No Telp</th>
-                                                <th scope="col">Ruang</th>
-                                                <th scope="col">Tanggal Pinjam</th>
-                                                <th scope="col">Tanggal Kembali</th>
-                                                <th scope="col">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $tampil = mysqli_query($conn,"SELECT pesanan.status, pesanan.id_pesanan, pesanan.nama_peminjam, pesanan.tanggal_pinjam, pesanan.tanggal_kembali, pesanan.notelp, ruang.nama_ruang, pesanan.status from pesanan, ruang where ruang.id_ruang = pesanan.id_ruang");
-                                        $i = 1;
-                                        echo" <tbody>";
-                                        foreach($tampil as $row){
-                                        echo    "<tr>";
-                                        echo    "<th scope='row'>".$i++."</th>";
-                                        echo    "<td>" .$row["nama_peminjam"]. "</td>";
-                                        echo    "<td>".$row["notelp"]."</td>";
-                                        echo    "<td>".$row["nama_ruang"]."</td>";
-                                        echo    "<td>".$row["tanggal_pinjam"]."</td>";
-                                        echo    "<td>".$row["tanggal_kembali"]."</td>";
-                                        echo    "<td>".$row["status"]."</td>";
-                                        echo    "</tr>";
+                                    echo "<table class='table table-striped table-hover'>";
+                                    echo "<thead>";
+                                    echo "<tr class='table-primary'>";
+                                    echo "<th scope='col'>No</th>";
+                                    echo "<th scope='col'>Resi Pesanan</th>";
+                                    echo "<th scope='col'>Nama</th>";
+                                    echo "<th scope='col'>Paket</th>";
+                                    echo "<th scope='col'>Tanggal Pesan</th>";
+                                    echo "<th scope='col'>No Telp</th>";
+                                    echo "<th scope='col'>Alamat</th>";
+                                    echo "<th scope='col'>Status</th>";
+                                    echo "<th style='width:20%' scope='col'>Action</th>";
+                                    echo "</tr>";
+                                    echo "</thead>";
+                                    include "../koneksi.php";
+                                    $tampil = mysqli_query($conn, "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp,pesanan.alamat, paket.nama_paket, pesanan.status from pesanan, paket where paket.id_paket = pesanan.id_paket");
+                                    $i = 1;
+                                    echo "<tbody>";
+                                    foreach ($tampil as $row) {
+                                        echo "<tr>";
+                                        echo "<th scope='row'>" . $i++ . "</th>";
+                                        echo "<td>" . $row["id_pesanan"] . "</td>";
+                                        echo "<td>" . $row["nama"] . "</td>";
+                                        echo "<td>" . $row["nama_paket"] . "</td>";
+                                        echo "<td>" . $row["tgl_pesan"] . "</td>";
+                                        echo "<td>" . $row["notelp"] . "</td>";
+                                        echo "<td>" . $row["alamat"] . "</td>";
+                                        if ($row['status'] == 'Selesai') {
+                                            echo "<td> <span class='badge bg-success'>Selesai</span></td>";
+                                        } elseif ($row['status'] == 'Sedang Diproses') {
+                                            echo "<td> <span class='badge bg-warning'>Sedang Diproses</span></td>";
+                                        } else {
+                                            echo "<td> <span class='badge bg-danger'>Dalam Antrian</span></td>";
                                         }
-                                        echo "</tbody>";
+                                        echo "<td><a class='btn btn-success' href='pesanan.php?op=selesai&id=$row[id_pesanan]'>Selesai</a> <a class='btn btn-primary' href='pesanan.php?op=proses&id=$row[id_pesanan]'>Proses</a> <a class='btn btn-danger' href='pesanan.php?op=antri&id=$row[id_pesanan]'>Antri</a></td>";
+
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>";
                                     echo "</table>";
                                     ?>
                                 </div>
