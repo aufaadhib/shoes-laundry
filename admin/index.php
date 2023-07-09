@@ -1,10 +1,12 @@
 
 <?php
+ob_start();
 include "../koneksi.php";
 $nama = "";
 $paket = "";
 $notelp = "";
 $alamat = "";
+$error = "";
 $errorgakbalik = "";
 $sukses = "";
 
@@ -31,15 +33,15 @@ if ($op == 'update') {
 }
 //Create data
 if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
-    $id = $_GET['id'];
+    // $id = $_GET['id'];
     $nama = $_POST['nama'];
     $paket = $_POST['id_paket'];
     $notelp = $_POST['notelp'];
     $alamat = $_POST['alamat'];
     // $harga = $_POST['harga'];
-    if ($id == '') {
-        $error = "Data tidak ditemukan";
-    }
+    // if ($id == '') {
+    //     $error = "Data tidak ditemukan";
+    // }
 
     if ($nama && $paket && $notelp && $alamat) {
          if ($op == 'update') { //FUNGSI UNTUK UPDATE
@@ -282,6 +284,39 @@ if(isset($_GET['id_paket'])){
                     <div class="col-10 col-xl mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header">Pesan Laundry</h5>
+                                                            <!-- Ini Alert -->
+                                <div class="container mt-3">
+                                    <?php
+                                    if ($error) {
+                                    ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $error ?>
+                                        </div>
+                                    <?php
+                                        header("refresh:1;url=index.php");
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($errorgakbalik) {
+                                    ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $errorgakbalik ?>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($sukses) {
+                                    ?>
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $sukses ?>
+                                        </div>
+                                    <?php
+                                        header("refresh:1;url=pesanan.php");
+                                    }
+                                    ?>
+                                </div>
+                                <!-- Ini akhir Alert -->
                             <!-- Awal Form Pesanan -->
     <section class=" text-dark p-5 p-lg-3">
         <div class="container">
@@ -310,7 +345,6 @@ if(isset($_GET['id_paket'])){
                         $paket = mysqli_query($conn, "SELECT * from paket ORDER BY id_paket DESC");
                         while ($r = mysqli_fetch_array($paket)) {
                         ?>
-                            <option value="" disabled selected hidden>Pilihan Paket</option>
                             <option value="<?php echo $r['id_paket'] ?>" <?php echo ($r['id_paket'] == $paket) ? 'selected' : ''; ?>><?php echo $r['nama_paket'] ?></option>
                         <?php } ?>
                     </select>

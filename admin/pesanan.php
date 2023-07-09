@@ -207,7 +207,7 @@ if ($op == 'proses') {
                                     echo "</tr>";
                                     echo "</thead>";
                                     include "../koneksi.php";
-                                    $tampil = mysqli_query($conn, "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp,pesanan.alamat, paket.nama_paket, pesanan.status from pesanan, paket where paket.id_paket = pesanan.id_paket");
+                                    $tampil = mysqli_query($conn, "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket ORDER BY pesanan.id_pesanan DESC");
                                     $i = 1;
                                     echo "<tbody>";
                                     foreach ($tampil as $row) {
