@@ -260,7 +260,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                             echo "<td>" . $row["nama_paket"] . "</td>";
                                             echo "<td>" . ($row["harga"]) . "</td>";
                                             echo "<td>" . $row["deskripsi"] . "</td>";
-                                            echo "<td><a href='paket.php?op=update&id=$row[id_paket]'>Update</a> <a href='paket.php?op=delete&id=$row[id_paket]'>Delete</a></td>";
+                                            echo "<td class='text-center'><a href='paket.php?op=update&id=$row[id_paket]'><img src='assets/update.png' width='20' height='20'></a> <a href='paket.php?op=delete&id=$row[id_paket]'><img src='assets/delete.svg' width='20' height='20'></a></td>";
                                             echo "</tr>";
                                             $i++;
                                         }

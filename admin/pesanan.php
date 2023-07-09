@@ -193,7 +193,7 @@ if ($op == 'proses') {
                                     echo "<th scope='col'>Alamat</th>";
                                     echo "<th scope='col'>Status</th>";
                                     echo "<th style='width:20%' scope='col'>Ubah Status</th>";
-                                    echo "<th style='width:5%' scope='col'>Action</th>";
+                                    echo "<th style='width:10%' scope='col'>Action</th>";
                                     echo "</tr>";
                                     echo "</thead>";
                                     include "../koneksi.php";
@@ -217,7 +217,7 @@ if ($op == 'proses') {
                                             echo "<td> <span class='badge bg-danger'>Dalam Antrian</span></td>";
                                         }
                                         echo "<td><a class='btn btn-success' href='pesanan.php?op=selesai&id=$row[id_pesanan]'>Selesai</a> <a class='btn btn-primary' href='pesanan.php?op=proses&id=$row[id_pesanan]'>Proses</a> <a class='btn btn-danger' href='pesanan.php?op=antri&id=$row[id_pesanan]'>Antri</a></td>";
-                                        echo "<td><a href='index.php?op=update&id=$row[id_pesanan]'><img src='assets/update.png' width='20' height='20'></a> <a href='pesanan.php?op=delete&id=$row[id_pesanan]'><img src='assets/delete.svg' width='20' height='20'></a></td>";
+                                        echo "<td class='text-center'><a href='index.php?op=update&id=$row[id_pesanan]'><img src='assets/update.png' width='25' height='25'></a> <a href='pesanan.php?op=delete&id=$row[id_pesanan]'><img src='assets/delete.svg' width='25' height='25'></a> <a href='cetak.php?op=update&id=$row[id_pesanan]'><img src='assets/cetak.svg' width='30' height='30'></a></td>";
                                         echo "</tr>";
                                     }
                                     echo "</tbody>";
