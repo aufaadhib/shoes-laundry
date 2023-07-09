@@ -53,7 +53,7 @@
                 <img src="assets/img/logo.png" alt="">
             </div>
             <div class="content">
-                <form action="#">
+                <form action="#" method="get">
                     <h5>Masukan Kode Invoice</h5>
                     <div class="input-group">
                         <span class="input-group-text" id="addon-wrapping">#</span>
@@ -63,18 +63,24 @@
                         <button type="submit" class="btn btn-primary mb-3">Check Status</button>
                     </div>
                 </form>
-                <div class="row">
-                    <div class="order-tracking completed">
-                        <span class="is-complete"></span>
-                        <p>Ordered</p>
-                    </div>
-                    <div class="order-tracking completed">
-                        <span class="is-complete"></span>
-                        <p>Shipped</p>
-                    </div>
-                    <div class="order-tracking">
-                        <span class="is-complete"></span>
-                        <p>Delivered</p>
+                <div class="card pb-5">
+                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
+                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
+                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
+                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
+                    <div class="row mt-3">
+                        <div class="order-tracking completed">
+                            <span class="is-complete"></span>
+                            <p>Dalam Antrian</p>
+                        </div>
+                        <div class="order-tracking completed">
+                            <span class="is-complete"></span>
+                            <p>Sedang Diproses</p>
+                        </div>
+                        <div class="order-tracking">
+                            <span class="is-complete"></span>
+                            <p>Selesai</p>
+                        </div>
                     </div>
                 </div>
             </div>

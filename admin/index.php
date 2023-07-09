@@ -1,4 +1,3 @@
-
 <?php
 ob_start();
 include "../koneksi.php";
@@ -44,7 +43,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
     // }
 
     if ($nama && $paket && $notelp && $alamat) {
-         if ($op == 'update') { //FUNGSI UNTUK UPDATE
+        if ($op == 'update') { //FUNGSI UNTUK UPDATE
             $sql1 = "update pesanan set nama = '$nama', notelp ='$notelp', alamat ='$alamat',id_paket='$paket' where id_pesanan = '$id' ";
             $q1 = mysqli_query($conn, $sql1);
             if ($q1) {
@@ -68,10 +67,10 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
 
 
 
-if(isset($_GET['id_paket'])){
+if (isset($_GET['id_paket'])) {
     $cari = $_GET['id_paket'];
     $data = mysqli_query($conn, "select * from paket where id_paket = '$cari'");
-}else{
+} else {
 }
 
 ?>
@@ -138,7 +137,7 @@ if(isset($_GET['id_paket'])){
         </div>
         <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
             <div class="dropdown">
-                
+
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                     Hello, Admin
                 </button>
@@ -178,7 +177,17 @@ if(isset($_GET['id_paket'])){
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                 </svg>
-                                <span class="ml-2">Paket</span>
+                                <span class="ml-2">Input Paket</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="input_pesanan.php">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span class="ml-2">Input Pesanan</span>
                             </a>
                         </li>
                     </ul>
@@ -187,166 +196,102 @@ if(isset($_GET['id_paket'])){
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
                 <h1 class="h2">Dashboard</h1>
                 <!-- Content Row -->
-                    <div class="row">
+                <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Earnings (Monthly)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Jumlah Paket Tersedia</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Paket Tersedia
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $result=mysqli_query($conn, "SELECT count(*) as total from paket"); $data=mysqli_fetch_assoc($result); echo $data['total']; ?></div>
-                                                </div>                                         
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Jumlah Pesanan</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $result=mysqli_query($conn, "SELECT count(*) as total from pesanan"); $data=mysqli_fetch_assoc($result); echo $data['total']; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Content Row -->
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Jumlah Paket Tersedia</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Paket Tersedia
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $result = mysqli_query($conn, "SELECT count(*) as total from paket");
+                                                                                                    $data = mysqli_fetch_assoc($result);
+                                                                                                    echo $data['total']; ?></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Jumlah Pesanan</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $result = mysqli_query($conn, "SELECT count(*) as total from pesanan");
+                                                                                            $data = mysqli_fetch_assoc($result);
+                                                                                            echo $data['total']; ?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Row -->
                 <div class="row">
                     <div class="col-10 col-xl mb-4 mb-lg-0">
                         <div class="card">
-                            <h5 class="card-header">Pesan Laundry</h5>
-                                                            <!-- Ini Alert -->
-                                <div class="container mt-3">
-                                    <?php
-                                    if ($error) {
-                                    ?>
-                                        <div class="alert alert-danger" role="alert">
-                                            <?php echo $error ?>
-                                        </div>
-                                    <?php
-                                        header("refresh:1;url=index.php");
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($errorgakbalik) {
-                                    ?>
-                                        <div class="alert alert-danger" role="alert">
-                                            <?php echo $errorgakbalik ?>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($sukses) {
-                                    ?>
-                                        <div class="alert alert-success" role="alert">
-                                            <?php echo $sukses ?>
-                                        </div>
-                                    <?php
-                                        header("refresh:1;url=pesanan.php");
-                                    }
-                                    ?>
-                                </div>
-                                <!-- Ini akhir Alert -->
-                            <!-- Awal Form Pesanan -->
-    <section class=" text-dark p-5 p-lg-3">
-        <div class="container">
-            <nav class="navbar text-white" style="background-color: #0d6efd">
-                &nbsp;&nbsp; Formulir Peminjaman
-            </nav><br>
-            <form class="row g-3" method="POST" action="">
-                <div class="col-md-6">
-                    <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="nama" placeholder="Masukkan nama pelanggan" value="<?php echo $nama?>">
-                </div>
-                <div class="col-md-6">
-                    <label for="notelp" class="form-label">No Telp</label>
-                    <input type="number" class="form-control" name="notelp" placeholder="Masukkan no telp pelanggan" value="<?php echo $notelp ?>">
-                </div>
-                <div class="col-md-12">
-                    <label for="alamat" class="form-label">Alamat</label>
-                    <input type="textarea" class="form-control" name="alamat" placeholder="Masukkan alamat pelanggan" value="<?php echo $alamat ?>">
-                </div>
-                <div class="col-12">
-                    <label for="paket" class="form-label">Pilih Paket Laundry</label>
-                    <select name="id_paket" class="form-select" aria-label="Default select example" placeholder="Masukkan alamat pelanggan">
-                        <!-- <option selected>Pilihan Paket</option> -->
-                        <?php
-                        include "./koneksi.php";
-                        $paket = mysqli_query($conn, "SELECT * from paket ORDER BY id_paket DESC");
-                        while ($r = mysqli_fetch_array($paket)) {
-                        ?>
-                            <option value="<?php echo $r['id_paket'] ?>" <?php echo ($r['id_paket'] == $paket) ? 'selected' : ''; ?>><?php echo $r['nama_paket'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary" name="submit">Pesan</button>
-                </div>
-            </form>
-        </div>
-    </section>
-    <!-- Akhir Pesanan -->
+                            <h5 class="card-header">Dashboard</h5>
+                            <!-- Ini Alert -->
+                            <div class="container mt-3">
+
+                            </div>
+                            <!-- Akhir Pesanan -->
                         </div>
                     </div>
                 </div>

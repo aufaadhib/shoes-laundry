@@ -37,6 +37,6 @@ $pdf->Cell(130 ,10,'Alamat              : '.$out['alamat'],0,1);
 $pdf->Cell(130 ,10,'Paket Laundry  : '.$out['nama_paket'],0,1);
 $pdf->Cell(130 ,10,'Tanggal Order  : '.$out['tgl_pesan'],0,1);
 $pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(0 ,15,'Harga : Rp'.$out['harga'],1,1,'C');
+$pdf->Cell(210 ,15,'Harga : Rp'.$out['harga'],0,1,'C');
 $pdf->Output();
 ?>
