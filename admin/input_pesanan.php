@@ -241,7 +241,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                         <div class="col-12">
                                             <label for="paket" class="form-label">Pilih Paket Laundry</label>
                                             <select name="id_paket" class="form-select" aria-label="Default select example" placeholder="Masukkan alamat pelanggan">
-                                                 <option disabled>Pilihan Paket</option> 
+                                                <option disabled>Pilihan Paket</option>
                                                 <?php
                                                 include "./koneksi.php";
                                                 $paket = mysqli_query($conn, "SELECT * from paket ORDER BY id_paket DESC");
