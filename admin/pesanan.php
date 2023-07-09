@@ -182,6 +182,19 @@ if ($op == 'proses') {
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
                 <h1 class="h2">Pesanan</h1>
                 <div class="row">
+                    <div class="content">
+                <form action="pesanan.php" method="get">
+                    <h5>Masukan Kode Pesanan</h5>
+                    <div class="input-group">
+                        <span class="input-group-text" id="addon-wrapping">#</span>
+                        <input name=cari type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="col-auto p-3">
+                        <button type="submit" class="btn btn-primary mb-3">Check Status</button>
+                    </div>
+                </form>
+                
+            </div>
                     <div class="col-10 col-xl mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header">Daftar Pesanan Laundry</h5>
@@ -204,30 +217,41 @@ if ($op == 'proses') {
                                     echo "<th style='width:10%' scope='col'>Action</th>";
                                     echo "</tr>";
                                     echo "</thead>";
-                                    include "../koneksi.php";
-                                    $tampil = mysqli_query($conn, "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket ORDER BY pesanan.id_pesanan DESC");
-                                    $i = 1;
-                                    echo "<tbody>";
-                                    foreach ($tampil as $row) {
-                                        echo "<tr>";
-                                        echo "<th scope='row'>" . $i++ . "</th>";
-                                        echo "<td>" . $row["id_pesanan"] . "</td>";
-                                        echo "<td>" . $row["nama"] . "</td>";
-                                        echo "<td>" . $row["nama_paket"] . "</td>";
-                                        echo "<td>" . $row["tgl_pesan"] . "</td>";
-                                        echo "<td>" . $row["notelp"] . "</td>";
-                                        echo "<td>" . $row["alamat"] . "</td>";
-                                        if ($row['status'] == 'Selesai') {
-                                            echo "<td> <span class='badge bg-success'>Selesai</span></td>";
-                                        } elseif ($row['status'] == 'Sedang Diproses') {
-                                            echo "<td> <span class='badge bg-warning'>Sedang Diproses</span></td>";
-                                        } else {
-                                            echo "<td> <span class='badge bg-danger'>Dalam Antrian</span></td>";
-                                        }
-                                        echo "<td><a class='btn btn-success' href='pesanan.php?op=selesai&id=$row[id_pesanan]'>Selesai</a> <a class='btn btn-primary' href='pesanan.php?op=proses&id=$row[id_pesanan]'>Proses</a> <a class='btn btn-danger' href='pesanan.php?op=antri&id=$row[id_pesanan]'>Antri</a></td>";
-                                        echo "<td class='text-center'><a href='input_pesanan.php?op=update&id=$row[id_pesanan]'><img src='assets/update.png' width='25' height='25'></a> <a href='pesanan.php?op=delete&id=$row[id_pesanan]'><img src='assets/delete.svg' width='25' height='25'></a> <a href='cetak.php?op=update&id=$row[id_pesanan]'><img src='assets/cetak.svg' width='30' height='30'></a></td>";
-                                        echo "</tr>";
+
+                                    if (isset($_GET['cari'])) {
+                                        $cari = $_GET['cari'];
+                                        //query pencarian biasa lah 
+                                        // $tampil = "SELECT * FROM pesanan WHERE id_pesanan like '$cari' ORDER BY id_pesanan DESC";
+                                        $tampil = "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket WHERE id_pesanan like '$cari' ORDER BY pesanan.id_pesanan DESC";
+                                    } else {
+                                        //jika tidak ada pencarian, default yang dijalankan query ini
+                                        $tampil = "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket ORDER BY pesanan.id_pesanan DESC";
                                     }
+                                    $result = mysqli_query($conn, $tampil);
+                    
+                                        $i = 1;
+                                            echo "<tbody>";
+                                            foreach ($result as $row) {
+                                                echo "<tr>";
+                                                echo "<th scope='row'>" . $i++ . "</th>";
+                                                echo "<td>" . $row["id_pesanan"] . "</td>";
+                                                echo "<td>" . $row["nama"] . "</td>";
+                                                echo "<td>" . $row["nama_paket"] . "</td>";
+                                                echo "<td>" . $row["tgl_pesan"] . "</td>";
+                                                echo "<td>" . $row["notelp"] . "</td>";
+                                                echo "<td>" . $row["alamat"] . "</td>";
+                                                if ($row['status'] == 'Selesai') {
+                                                    echo "<td> <span class='badge bg-success'>Selesai</span></td>";
+                                                } elseif ($row['status'] == 'Sedang Diproses') {
+                                                    echo "<td> <span class='badge bg-warning'>Sedang Diproses</span></td>";
+                                                } else {
+                                                    echo "<td> <span class='badge bg-danger'>Dalam Antrian</span></td>";
+                                                }
+                                                echo "<td><a class='btn btn-success' href='pesanan.php?op=selesai&id=$row[id_pesanan]'>Selesai</a> <a class='btn btn-primary' href='pesanan.php?op=proses&id=$row[id_pesanan]'>Proses</a> <a class='btn btn-danger' href='pesanan.php?op=antri&id=$row[id_pesanan]'>Antri</a></td>";
+                                                echo "<td class='text-center'><a href='input_pesanan.php?op=update&id=$row[id_pesanan]'><img src='assets/update.png' width='25' height='25'></a> <a href='pesanan.php?op=delete&id=$row[id_pesanan]'><img src='assets/delete.svg' width='25' height='25'></a> <a href='cetak.php?op=update&id=$row[id_pesanan]'><img src='assets/cetak.svg' width='30' height='30'></a></td>";
+                                                echo "</tr>";
+                                            }
+                                    
                                     echo "</tbody>";
                                     echo "</table>";
                                     ?>
@@ -249,4 +273,6 @@ if ($op == 'proses') {
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
-</html>
+</html>                                     
+<!-- $tampil = mysqli_query($conn, "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket ORDER BY pesanan.id_pesanan DESC"); -->
+                                            
