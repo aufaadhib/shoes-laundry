@@ -8,16 +8,49 @@ $alamat = "";
 $errorgakbalik = "";
 $sukses = "";
 
+
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+} else {
+    $op = "";
+}
+// FUNGSI UPDATE UNTUK MENGAMBIL DATA DARI TABLE MAHASISWA
+if ($op == 'update') {
+    $id         = $_GET['id'];
+    $sql1       = "select * from pesanan where id_pesanan = '$id'";
+    $q1         = mysqli_query($conn, $sql1);
+    $r1         = mysqli_fetch_array($q1);
+    $nama = isset($r1['nama']) ? $r1['nama'] : '';
+    $notelp      = isset($r1['notelp']) ? $r1['notelp'] : '';
+    $alamat  = isset($r1['alamat']) ? $r1['alamat'] : '';
+    $paket  = isset($r1['paket']) ? $r1['paket'] : '';
+
+    if ($id == '') {
+        $error = "Data tidak ditemukan";
+    }
+}
 //Create data
 if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
+    $id = $_GET['id'];
     $nama = $_POST['nama'];
     $paket = $_POST['id_paket'];
     $notelp = $_POST['notelp'];
     $alamat = $_POST['alamat'];
     // $harga = $_POST['harga'];
+    if ($id == '') {
+        $error = "Data tidak ditemukan";
+    }
 
     if ($nama && $paket && $notelp && $alamat) {
-         //FUNGSI UNTUK CREATE
+         if ($op == 'update') { //FUNGSI UNTUK UPDATE
+            $sql1 = "update pesanan set nama = '$nama', notelp ='$notelp', alamat ='$alamat',id_paket='$paket' where id_pesanan = '$id' ";
+            $q1 = mysqli_query($conn, $sql1);
+            if ($q1) {
+                $sukses = "Data berhasil diupdate";
+            } else {
+                $error = "Data gagal diupdate";
+            }
+        } else { //FUNGSI UNTUK CREATE
             $sql1 = "insert into pesanan ( nama, id_paket, notelp, alamat) VALUES ( '" . $nama . "', '" . $paket . "', '" . $notelp . "', '" . $alamat . "')";
             $q1 = mysqli_query($conn, $sql1);
             if ($q1) {
@@ -25,11 +58,13 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
             } else {
                 $errorgakbalik      = "Gagal Memasukan Data.";
             }
-        
+        }
     } else {
         $errorgakbalik = "Silahkan Masukan Semua Data";
     }
 }
+
+
 
 if(isset($_GET['id_paket'])){
     $cari = $_GET['id_paket'];
@@ -144,7 +179,16 @@ if(isset($_GET['id_paket'])){
                                 <span class="ml-2">Paket</span>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="listpesanan.php">
+                                <svg xmlns="https://icons8.com/icon/83186/list" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span class="ml-2">List Pesanan</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -247,25 +291,26 @@ if(isset($_GET['id_paket'])){
             <form class="row g-3" method="POST" action="">
                 <div class="col-md-6">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="nama" placeholder="Masukkan nama pelanggan">
+                    <input type="text" class="form-control" name="nama" placeholder="Masukkan nama pelanggan" value="<?php echo $nama?>">
                 </div>
                 <div class="col-md-6">
                     <label for="notelp" class="form-label">No Telp</label>
-                    <input type="number" class="form-control" name="notelp" placeholder="Masukkan no telp pelanggan">
+                    <input type="number" class="form-control" name="notelp" placeholder="Masukkan no telp pelanggan" value="<?php echo $notelp ?>">
                 </div>
                 <div class="col-md-12">
                     <label for="alamat" class="form-label">Alamat</label>
-                    <input type="textarea" class="form-control" name="alamat" placeholder="Masukkan alamat pelanggan">
+                    <input type="textarea" class="form-control" name="alamat" placeholder="Masukkan alamat pelanggan" value="<?php echo $alamat ?>">
                 </div>
                 <div class="col-12">
                     <label for="paket" class="form-label">Pilih Paket Laundry</label>
-                    <select name="id_paket" class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                    <select name="id_paket" class="form-select" aria-label="Default select example" placeholder="Masukkan alamat pelanggan">
+                        <!-- <option selected>Pilihan Paket</option> -->
                         <?php
                         include "./koneksi.php";
                         $paket = mysqli_query($conn, "SELECT * from paket ORDER BY id_paket DESC");
                         while ($r = mysqli_fetch_array($paket)) {
                         ?>
+                            <option value="" disabled selected hidden>Pilihan Paket</option>
                             <option value="<?php echo $r['id_paket'] ?>" <?php echo ($r['id_paket'] == $paket) ? 'selected' : ''; ?>><?php echo $r['nama_paket'] ?></option>
                         <?php } ?>
                     </select>

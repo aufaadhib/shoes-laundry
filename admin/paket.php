@@ -172,7 +172,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="listpesanan.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                                <svg xmlns="https://icons8.com/icon/83186/list" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -200,7 +200,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                             <?php echo $error ?>
                                         </div>
                                     <?php
-                                        header("refresh:1;url=index.php");
+                                        header("refresh:1;url=paket.php");
                                     }
                                     ?>
                                     <?php
@@ -219,7 +219,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                             <?php echo $sukses ?>
                                         </div>
                                     <?php
-                                        header("refresh:1;url=index.php");
+                                        header("refresh:1;url=paket.php");
                                     }
                                     ?>
                                 </div>
@@ -271,7 +271,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                                             echo "<td>" . $row["nama_paket"] . "</td>";
                                             echo "<td>" . ($row["harga"]) . "</td>";
                                             echo "<td>" . $row["deskripsi"] . "</td>";
-                                            echo "<td><a href='index.php?op=update&id=$row[id_paket]'>Update</a> <a href='index.php?op=delete&id=$row[id_paket]'>Delete</a></td>";
+                                            echo "<td><a href='paket.php?op=update&id=$row[id_paket]'>Update</a> <a href='paket.php?op=delete&id=$row[id_paket]'>Delete</a></td>";
                                             echo "</tr>";
                                             $i++;
                                         }

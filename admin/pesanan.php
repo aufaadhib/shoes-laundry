@@ -1,9 +1,41 @@
 <?php
 include "../koneksi.php";
+$nama = "";
+$paket = "";
+$notelp = "";
+$alamat = "";
+$errorgakbalik = "";
+$sukses = "";
 if (isset($_GET['op'])) {
     $op = $_GET['op'];
 } else {
     $op = "";
+}
+// fungsi delete mengambil dari variable op yang dikirim lewat url
+if ($op == 'delete') {
+    $id = $_GET['id'];
+    $sql1 = "delete from pesanan where id_pesanan = '$id'";
+    $q1 = mysqli_query($conn, $sql1);
+    if ($q1) {
+        $sukses = "Berhasil hapus data";
+    } else {
+        $error = "Gagal hapus data";
+    }
+}
+// FUNGSI UPDATE UNTUK MENGAMBIL DATA DARI TABLE PESANAN
+if ($op == 'update') {
+    $id         = $_GET['id'];
+    $sql1       = "select * from pesanan where id_pesanan = '$id'";
+    $q1         = mysqli_query($conn, $sql1);
+    $r1         = mysqli_fetch_array($q1);
+    $nama = isset($r1['nama_paket']) ? $r1['nama_paket'] : '';
+    $nama_paket = isset($r1['nama_paket']) ? $r1['nama_paket'] : '';
+    $kapasitas  = isset($r1['kapasitas']) ? $r1['kapasitas'] : '';
+    $deskripsi  = isset($r1['desc_ruang']) ? $r1['desc_ruang'] : '';
+
+    if ($id == '') {
+        $error = "Data tidak ditemukan";
+    }
 }
 
 if ($op == 'antri') {
@@ -136,7 +168,16 @@ if ($op == 'proses') {
                                 <span class="ml-2">Paket</span>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="listpesanan.php">
+                                <svg xmlns="https://icons8.com/icon/83186/list" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span class="ml-2">List Pesanan</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -161,7 +202,8 @@ if ($op == 'proses') {
                                     echo "<th scope='col'>No Telp</th>";
                                     echo "<th scope='col'>Alamat</th>";
                                     echo "<th scope='col'>Status</th>";
-                                    echo "<th style='width:20%' scope='col'>Action</th>";
+                                    echo "<th style='width:20%' scope='col'>Ubah Status</th>";
+                                    echo "<th style='width:10%' scope='col'>Action</th>";
                                     echo "</tr>";
                                     echo "</thead>";
                                     include "../koneksi.php";
@@ -185,7 +227,7 @@ if ($op == 'proses') {
                                             echo "<td> <span class='badge bg-danger'>Dalam Antrian</span></td>";
                                         }
                                         echo "<td><a class='btn btn-success' href='pesanan.php?op=selesai&id=$row[id_pesanan]'>Selesai</a> <a class='btn btn-primary' href='pesanan.php?op=proses&id=$row[id_pesanan]'>Proses</a> <a class='btn btn-danger' href='pesanan.php?op=antri&id=$row[id_pesanan]'>Antri</a></td>";
-
+                                        echo "<td><a href='index.php?op=update&id=$row[id_pesanan]'>Update</a> <a href='pesanan.php?op=delete&id=$row[id_pesanan]'>Delete</a></td>";
                                         echo "</tr>";
                                     }
                                     echo "</tbody>";
