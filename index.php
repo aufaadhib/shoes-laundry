@@ -53,22 +53,19 @@
                 <img src="assets/img/logo.png" alt="">
             </div>
             <div class="content">
-                <form action="#" method="get">
+                <form action="index.php" method="GET">
                     <h5>Masukan Kode Invoice</h5>
                     <div class="input-group">
                         <span class="input-group-text" id="addon-wrapping">#</span>
-                        <input type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
+                        <input name="track" type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                     <div class="col-auto p-3">
                         <button type="submit" class="btn btn-primary mb-3">Check Status</button>
                     </div>
                 </form>
+                
                 <div class="card pb-5">
-                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
-                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
-                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
-                <p class="text-muted mt-4 mb-2 ps-4"> Order ID <span class="fw-bold text-body">1222528743</span></p>
-                    <div class="row mt-3">
+                    <div class="row mt-5">
                         <div class="order-tracking completed">
                             <span class="is-complete"></span>
                             <p>Dalam Antrian</p>

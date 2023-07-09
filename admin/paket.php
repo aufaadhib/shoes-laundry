@@ -1,5 +1,10 @@
 <?php
 ob_start();
+session_start();
+$username = $_SESSION['username'];
+if (!isset($username)) {
+    header('location:index.php');
+}
 include "../koneksi.php";
 $namapaket = "";
 $harga = "";
@@ -132,7 +137,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                     Hello, Admin
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="../logout.php">Sign out</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -143,7 +148,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.php">
+                            <a class="nav-link" aria-current="page" href="dashboard.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -279,7 +284,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
                     </div>
                 </div>
                 <footer class="pt-5 d-flex justify-content-between">
-                    <span>Copyright © 2019-2020 <a href="https://www.instagram.com/dimasasna/">RPL</a></span>
+                    <span>Copyright © 2023 <a href="https://www.instagram.com/dimasasna/">BESHOES</a></span>
                 </footer>
             </main>
         </div>

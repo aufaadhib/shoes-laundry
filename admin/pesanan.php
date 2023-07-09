@@ -1,4 +1,9 @@
 <?php
+session_start();
+$username = $_SESSION['username'];
+if (!isset($username)) {
+    header('location:index.php');
+}
 include "../koneksi.php";
 $nama = "";
 $paket = "";
@@ -63,7 +68,7 @@ if ($op == 'proses') {
         $error = "Data tidak ditemukan";
     }
 }
-?>   
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -130,7 +135,7 @@ if ($op == 'proses') {
                     Hello, Admin
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="../logout.php">Sign out</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -141,7 +146,7 @@ if ($op == 'proses') {
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.php">
+                            <a class="nav-link" aria-current="page" href="dashboard.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -183,19 +188,18 @@ if ($op == 'proses') {
                 <h1 class="h2">Pesanan</h1>
                 <div class="row">
                     <div class="content">
-                <form action="pesanan.php" method="get">
-                    <h5>Masukan Kode Pesanan</h5>
-                    <div class="input-group">
-                        <span class="input-group-text" id="addon-wrapping">#</span>
-                        <input name=cari type="text" class="form-control" placeholder="Unique Code" value="" aria-label="Username" aria-describedby="addon-wrapping">
-                        
+                        <form action="pesanan.php" method="get">
+                            <div class="input-group">
+                                <span class="input-group-text" id="addon-wrapping">#</span>
+                                <input name=cari type="text" class="form-control" placeholder="Nomor Resi" value="" aria-label="Username" aria-describedby="addon-wrapping">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                            <div class="col-auto p-3">
+                                
+                            </div>
+                        </form>
+
                     </div>
-                    <div class="col-auto p-3">
-                        <button type="submit" class="btn btn-primary mb-3">Check Status</button>
-                    </div>
-                </form>
-                
-            </div>
                     <div class="col-10 col-xl mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header">Daftar Pesanan Laundry</h5>
@@ -223,36 +227,36 @@ if ($op == 'proses') {
                                         $cari = $_GET['cari'];
                                         //query pencarian biasa lah 
                                         // $tampil = "SELECT * FROM pesanan WHERE id_pesanan like '$cari' ORDER BY id_pesanan DESC";
-                                        $tampil = "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket WHERE id_pesanan like '%$cari%' ORDER BY pesanan.id_pesanan DESC";
+                                        $tampil = "SELECT pesanan.id_paket, pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket WHERE id_pesanan like '%$cari%' OR nama like '%$cari%' OR nama_paket like '%$cari%' ORDER BY pesanan.id_pesanan DESC";
                                     } else {
                                         //jika tidak ada pencarian, default yang dijalankan query ini
                                         $tampil = "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket ORDER BY pesanan.id_pesanan DESC";
                                     }
                                     $result = mysqli_query($conn, $tampil);
-                    
-                                        $i = 1;
-                                            echo "<tbody>";
-                                            foreach ($result as $row) {
-                                                echo "<tr>";
-                                                echo "<th scope='row'>" . $i++ . "</th>";
-                                                echo "<td>" . $row["id_pesanan"] . "</td>";
-                                                echo "<td>" . $row["nama"] . "</td>";
-                                                echo "<td>" . $row["nama_paket"] . "</td>";
-                                                echo "<td>" . $row["tgl_pesan"] . "</td>";
-                                                echo "<td>" . $row["notelp"] . "</td>";
-                                                echo "<td>" . $row["alamat"] . "</td>";
-                                                if ($row['status'] == 'Selesai') {
-                                                    echo "<td> <span class='badge bg-success'>Selesai</span></td>";
-                                                } elseif ($row['status'] == 'Sedang Diproses') {
-                                                    echo "<td> <span class='badge bg-warning'>Sedang Diproses</span></td>";
-                                                } else {
-                                                    echo "<td> <span class='badge bg-danger'>Dalam Antrian</span></td>";
-                                                }
-                                                echo "<td><a class='btn btn-success' href='pesanan.php?op=selesai&id=$row[id_pesanan]'>Selesai</a> <a class='btn btn-primary' href='pesanan.php?op=proses&id=$row[id_pesanan]'>Proses</a> <a class='btn btn-danger' href='pesanan.php?op=antri&id=$row[id_pesanan]'>Antri</a></td>";
-                                                echo "<td class='text-center'><a href='input_pesanan.php?op=update&id=$row[id_pesanan]'><img src='assets/update.png' width='25' height='25'></a> <a href='pesanan.php?op=delete&id=$row[id_pesanan]'><img src='assets/delete.svg' width='25' height='25'></a> <a href='cetak.php?op=update&id=$row[id_pesanan]'><img src='assets/cetak.svg' width='30' height='30'></a></td>";
-                                                echo "</tr>";
-                                            }
-                                    
+
+                                    $i = 1;
+                                    echo "<tbody>";
+                                    foreach ($result as $row) {
+                                        echo "<tr>";
+                                        echo "<th scope='row'>" . $i++ . "</th>";
+                                        echo "<td>" . $row["id_pesanan"] . "</td>";
+                                        echo "<td>" . $row["nama"] . "</td>";
+                                        echo "<td>" . $row["nama_paket"] . "</td>";
+                                        echo "<td>" . $row["tgl_pesan"] . "</td>";
+                                        echo "<td>" . $row["notelp"] . "</td>";
+                                        echo "<td>" . $row["alamat"] . "</td>";
+                                        if ($row['status'] == 'Selesai') {
+                                            echo "<td> <span class='badge bg-success'>Selesai</span></td>";
+                                        } elseif ($row['status'] == 'Sedang Diproses') {
+                                            echo "<td> <span class='badge bg-warning'>Sedang Diproses</span></td>";
+                                        } else {
+                                            echo "<td> <span class='badge bg-danger'>Dalam Antrian</span></td>";
+                                        }
+                                        echo "<td><a class='btn btn-success' href='pesanan.php?op=selesai&id=$row[id_pesanan]'>Selesai</a> <a class='btn btn-primary' href='pesanan.php?op=proses&id=$row[id_pesanan]'>Proses</a> <a class='btn btn-danger' href='pesanan.php?op=antri&id=$row[id_pesanan]'>Antri</a></td>";
+                                        echo "<td class='text-center'><a href='input_pesanan.php?op=update&id=$row[id_pesanan]'><img src='assets/update.png' width='25' height='25'></a> <a href='pesanan.php?op=delete&id=$row[id_pesanan]'><img src='assets/delete.svg' width='25' height='25'></a> <a href='cetak.php?op=update&id=$row[id_pesanan]'><img src='assets/cetak.svg' width='30' height='30'></a></td>";
+                                        echo "</tr>";
+                                    }
+
                                     echo "</tbody>";
                                     echo "</table>";
                                     ?>
@@ -262,7 +266,7 @@ if ($op == 'proses') {
                     </div>
                 </div>
                 <footer class="pt-5 d-flex justify-content-between">
-                    <span>Copyright © 2019-2020 <a href="https://www.instagram.com/dimasasna/">RPL</a></span>
+                    <span>Copyright © 2023<a href="https://www.instagram.com/dimasasna/">BESHOES</a></span>
                 </footer>
             </main>
         </div>
@@ -274,6 +278,5 @@ if ($op == 'proses') {
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
-</html>                                     
+</html>
 <!-- $tampil = mysqli_query($conn, "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket ORDER BY pesanan.id_pesanan DESC"); -->
-                                            
