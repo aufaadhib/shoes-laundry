@@ -187,7 +187,8 @@ if ($op == 'proses') {
                     <h5>Masukan Kode Pesanan</h5>
                     <div class="input-group">
                         <span class="input-group-text" id="addon-wrapping">#</span>
-                        <input name=cari type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
+                        <input name=cari type="text" class="form-control" placeholder="Unique Code" value="" aria-label="Username" aria-describedby="addon-wrapping">
+                        
                     </div>
                     <div class="col-auto p-3">
                         <button type="submit" class="btn btn-primary mb-3">Check Status</button>
@@ -222,7 +223,7 @@ if ($op == 'proses') {
                                         $cari = $_GET['cari'];
                                         //query pencarian biasa lah 
                                         // $tampil = "SELECT * FROM pesanan WHERE id_pesanan like '$cari' ORDER BY id_pesanan DESC";
-                                        $tampil = "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket WHERE id_pesanan like '$cari' ORDER BY pesanan.id_pesanan DESC";
+                                        $tampil = "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket WHERE id_pesanan like '%$cari%' ORDER BY pesanan.id_pesanan DESC";
                                     } else {
                                         //jika tidak ada pencarian, default yang dijalankan query ini
                                         $tampil = "SELECT pesanan.id_pesanan, pesanan.nama, pesanan.tgl_pesan, pesanan.notelp, pesanan.alamat, paket.nama_paket, pesanan.status FROM pesanan JOIN paket ON paket.id_paket = pesanan.id_paket ORDER BY pesanan.id_pesanan DESC";

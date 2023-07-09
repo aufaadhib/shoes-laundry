@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) { //UNTUK CREATE DAN UPDATE
     //     $error = "Data tidak ditemukan";
     // }
 
-    if ($nama && $paket && $notelp && $alamat) {
+    if ($nama && $paket && $notelp && $alamat && $paket) {
          if ($op == 'update') { //FUNGSI UNTUK UPDATE
             $sql1 = "update pesanan set nama = '$nama', notelp ='$notelp', alamat ='$alamat',id_paket='$paket' where id_pesanan = '$id' ";
             $q1 = mysqli_query($conn, $sql1);
