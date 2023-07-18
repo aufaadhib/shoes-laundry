@@ -1,3 +1,6 @@
+<?
+include 'koneksi.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,18 +56,108 @@
                 <img src="assets/img/logo.png" alt="">
             </div>
             <div class="content">
-                <form action="index.php" method="GET">
+                <form method="POST">
                     <h5>Masukan Kode Invoice</h5>
                     <div class="input-group">
                         <span class="input-group-text" id="addon-wrapping">#</span>
-                        <input name="track" type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
+                        <input name="search" type="text" class="form-control" placeholder="Unique Code" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                     <div class="col-auto p-3">
-                        <button type="submit" class="btn btn-primary mb-3">Check Status</button>
+                        <button name="submit" type="submit" class="btn btn-primary mb-3">Check Status</button>
                     </div>
                 </form>
-                
-                <div class="card pb-5">
+                <div>
+                    <?php
+                    include 'koneksi.php';
+                    if (isset($_POST['search'])) {
+                        $search = $_POST['search'];
+                        $data = mysqli_query($conn, "select date(tgl_pesan), nama, id_pesanan, alamat, status from pesanan where id_pesanan = '$search'");
+                        if ($d = mysqli_fetch_array($data)) {
+                            $tanggal = $d[0];
+                    ?>
+                            <div class="card text-dark">
+                                <div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">Tracking Order No - </span><span class="text-medium"><?php echo $d["id_pesanan"]; ?></span></div>
+                                <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 bg-light">
+                                    <div class="w-100 text-center py-1 px-3"><?php echo $d["nama"]; ?></div>
+                                    <div class="w-100 text-center py-1 px-2"><?php echo $d["alamat"]; ?></div>
+                                    <div class="w-100 text-center py-1 px-2"><?php echo $tanggal; ?></div>
+                                </div>
+                                <?php
+                                if ($d['status'] == 'Selesai') {
+                                ?>
+                                    <div class="card-body">
+                                        <div class="row mt-3 mb-3">
+                                            <div class="order-tracking completed">
+                                                <span class="is-complete"></span>
+                                                <p>Dalam Antrian</p>
+                                            </div>
+                                            <div class="order-tracking completed">
+                                                <span class="is-complete"></span>
+                                                <p>Sedang Diproses</p>
+                                            </div>
+                                            <div class="order-tracking completed">
+                                                <span class="is-complete"></span>
+                                                <p>Selesai</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                } elseif ($d['status'] == 'Sedang Diproses') {
+                                ?>
+                                    <div class="card-body">
+                                        <div class="row mt-3 mb-3">
+                                            <div class="order-tracking completed">
+                                                <span class="is-complete"></span>
+                                                <p>Dalam Antrian</p>
+                                            </div>
+                                            <div class="order-tracking completed">
+                                                <span class="is-complete"></span>
+                                                <p>Sedang Diproses</p>
+                                            </div>
+                                            <div class="order-tracking">
+                                                <span class="is-complete"></span>
+                                                <p>Selesai</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                } elseif ($d['status'] == 'Dalam Antrian') {
+                                ?>
+                                    <div class="card-body">
+                                        <div class="row mt-3 mb-3">
+                                            <div class="order-tracking completed">
+                                                <span class="is-complete"></span>
+                                                <p>Dalam Antrian</p>
+                                            </div>
+                                            <div class="order-tracking">
+                                                <span class="is-complete"></span>
+                                                <p>Sedang Diproses</p>
+                                            </div>
+                                            <div class="order-tracking">
+                                                <span class="is-complete"></span>
+                                                <p>Selesai</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="card text-dark">
+                                <div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">PESANAN TIDAK DITEMUKAN</span></div>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+
+
+
+                <!-- <div class="card pb-5">
                     <div class="row mt-5">
                         <div class="order-tracking completed">
                             <span class="is-complete"></span>
@@ -79,7 +172,7 @@
                             <p>Selesai</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 

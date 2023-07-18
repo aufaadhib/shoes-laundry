@@ -203,7 +203,7 @@ header ul {
 }
 
 hr {
-  border: 1px solid var(--main-color);
+  border: 5px solid var(--main-color);
   border-width: 3px;
   width: 15%;
   position: relative;
