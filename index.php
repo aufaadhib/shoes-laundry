@@ -154,25 +154,6 @@ include 'koneksi.php';
                     }
                     ?>
                 </div>
-
-
-
-                <!-- <div class="card pb-5">
-                    <div class="row mt-5">
-                        <div class="order-tracking completed">
-                            <span class="is-complete"></span>
-                            <p>Dalam Antrian</p>
-                        </div>
-                        <div class="order-tracking completed">
-                            <span class="is-complete"></span>
-                            <p>Sedang Diproses</p>
-                        </div>
-                        <div class="order-tracking">
-                            <span class="is-complete"></span>
-                            <p>Selesai</p>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
 
@@ -186,16 +167,32 @@ include 'koneksi.php';
         <hr>
         <p>Kami telah mencuci lebih dari 1000 pasang sepatu, dan akan terus bertambah! </p>
         <p> Jasa yang kami tawarkan:</p>
-        <div class="row">
-            <div class="service-card">
+        <div class="row mt-3">
+            <div class="col-md-4">
                 <img src="assets/img/menu4.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu1.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu5.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu6.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu2.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu7.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu8.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu3.png" alt="Repair">
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/menu9.png" alt="Repair">
             </div>
         </div>
@@ -206,17 +203,42 @@ include 'koneksi.php';
     <section class="gallery" id="gallery">
         <h1>GALLERY</h1>
         <hr>
-        <div class="row">
-            <div class="gallery-card">
+        <div class="row mt-3">
+            <div class="col-md-4">
                 <img src="assets/img/galeri1.png" alt="Repair">
+
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri2.png" alt="Repair">
+
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri3.png" alt="Repair">
+
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri4.jpg" alt="Repair">
+
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri5.jpg" alt="Repair">
+
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri6.jpg" alt="Repair">
+
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri7.jpg" alt="Repair">
+ 
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri8.jpg" alt="Repair">
+
+            </div>
+            <div class="col-md-4">
                 <img src="assets/img/galeri9.jpg" alt="Repair">
+
             </div>
         </div>
     </section>
@@ -283,7 +305,7 @@ include 'koneksi.php';
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.215649314796!2d110.4215421!3d-7.659948299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5f827c13e841%3A0x475894f89a802320!2sBeshoes%20Cuci%20Sepatu!5e0!3m2!1sid!2sid!4v1688752811328!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.215649314796!2d110.4215421!3d-7.659948299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5f827c13e841%3A0x475894f89a802320!2sBeshoes%20Cuci%20Sepatu!5e0!3m2!1sid!2sid!4v1688752811328!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-md-5">
                     <center>
